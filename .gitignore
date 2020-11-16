@@ -1,0 +1,11 @@
+# IDE Settings
+.vscode
+.settings
+
+# Java (Auto-Generated files)
+.classpath
+.project
+.factorypath
+
+# Build directory
+target/
