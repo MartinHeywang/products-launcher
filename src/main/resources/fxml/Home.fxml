@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="400.0" maxWidth="350.0" minWidth="300.0" spacing="5.0" stylesheets="@General.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.martinheywang.products.launcher.view.HomeView">
+<VBox maxHeight="400.0" maxWidth="350.0" minWidth="300.0" spacing="5.0" stylesheets="@General.css, @Label.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.martinheywang.products.launcher.view.HomeView">
    <children>
-      <HBox fx:id="logoContainer" alignment="CENTER" VBox.vgrow="ALWAYS">
+      <HBox fx:id="logoContainer" alignment="CENTER" VBox.vgrow="ALWAYS" styleClass="transparent">
          <children>
             <ImageView fitHeight="75.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
                <image>

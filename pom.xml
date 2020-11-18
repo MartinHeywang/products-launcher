@@ -1,113 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.martinheywang</groupId>
-  <artifactId>products-launcher</artifactId>
-  <version>1.0-SNAPSHOT</version>
+    <groupId>io.github.martinheywang</groupId>
+    <artifactId>products-launcher</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
-  <name>Products-launcher</name>
-  <url>https://martinheywang.github.io/PRODUCTS</url>
+    <name>Products-launcher</name>
+    <url>https://martinheywang.github.io/PRODUCTS</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
 
-    <mainClass>com.martinheywang.products.launcher.Launcher</mainClass>
-  </properties>
+        <mainClass>io.github.martinheywang.products.launcher.Launcher</mainClass>
+    </properties>
 
-  <build>
-    <plugins>
+    <build>
+        <plugins>
+            <plugin>
+                <!-- Docs : https://maven.apache.org/plugins/maven-assembly-plugin -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
 
-      <plugin>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <version>3.3.0</version>
-        <configuration>
-          <descriptorRefs>
-            <descriptorRef>jar-with-dependencies</descriptorRef>
-          </descriptorRefs>
-          <archive>
-            <manifest>
-              <mainClass>${mainClass}</mainClass>
-            </manifest>
-          </archive>
-        </configuration>
-      </plugin>
-      <plugin>
-				<groupId>io.github.fvarrui</groupId>
-				<artifactId>javapackager</artifactId>
-				<version>1.2.0</version>
-				<configuration>
-					<bundleJre>false</bundleJre>
-					<generateInstaller>false</generateInstaller>
-				</configuration>
-				<executions>
-					<!-- 
-					<execution>
-						<id>package-for-mac</id>
-						<phase>package</phase>
-						<goals>
-							<goal>package</goal>
-						</goals>
-						<configuration>
-							<platform>mac</platform>
-							<jdkPath>C:/Program Files/AdoptOpenJDK/jdk-11.0.8+10-mac/Contents/Home</jdkPath>
-						</configuration>
-					</execution>
-					<execution>
-						<id>package-for-linux</id>
-						<phase>package</phase>
-						<goals>
-							<goal>package</goal>
-						</goals>
-						<configuration>
-							<platform>linux</platform>
-							<jdkPath>C:/Program Files/AdoptOpenJDK/jdk-11.0.8+10-linux</jdkPath>
-						</configuration>
-					</execution>
-					 -->
-					<execution>
-						<id>package-for-windows</id>
-						<phase>package</phase>
-						<goals>
-							<goal>package</goal>
-						</goals>
-						<configuration>
-							<platform>windows</platform>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>${mainClass}</mainClass>
+                        </manifest>
+                    </archive>
 
-    </plugins>
-  </build>
+                </configuration>
 
-  <dependencies>
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <version>2.8.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <version>3.11</version>
-    </dependency>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>io.github.fvarrui</groupId>
+                <artifactId>javapackager</artifactId>
+                <version>1.2.0</version>
+                <configuration>
+                    <bundleJre>false</bundleJre>
+                    <generateInstaller>false</generateInstaller>
+                    <runnableJar>target\${project.artifactId}-${project.version}-jar-with-dependencies.jar</runnableJar>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>package-for-windows</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                        <configuration>
+                            <platform>windows</platform>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
-    <dependency>
-      <groupId>org.openjfx</groupId>
-      <artifactId>javafx-fxml</artifactId>
-      <version>16-ea+2</version>
-    </dependency>
+        </plugins>
+    </build>
 
-    <dependency>
-      <groupId>org.json</groupId>
-      <artifactId>json</artifactId>
-      <version>20200518</version>
-    </dependency>
+    <dependencies>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.8.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.11</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>16-ea+2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20200518</version>
+        </dependency>
 
 
-  </dependencies>
+    </dependencies>
 </project>
